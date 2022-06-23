@@ -1,8 +1,21 @@
 {
   "name": "solidity-template",
-  "version": "1.0.0",
-  "main": "index.js",
+  "version": "1.0.0-alpha",
+  "main": "package.json",
   "license": "MIT",
+  "scripts": {
+    "accounts": "hardhat accounts",
+    "clean": "hardhat clean",
+    "compile": "hardhat compile",
+    "coverage": "hardhat coverage",
+    "deploy": "hardhat run --network ropsten scripts/deploy.ts",
+    "deploy:prod": "hardhat run --network mainnet scripts/deploy.ts",
+    "format": "prettier --write '**/*.{js,ts,json,sol}'",
+    "helper": "hardhat help",
+    "lint": "eslint '**/*.{js,ts}' && solhint 'contracts/**/*.sol'",
+    "start": "hardhat node",
+    "test": "NODE_ENV=test hardhat test"
+  },
   "devDependencies": {
     "@nomiclabs/hardhat-ethers": "^2.0.0",
     "@nomiclabs/hardhat-etherscan": "^3.0.0",
@@ -19,6 +32,7 @@
     "eslint": "^7.29.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-config-standard": "^16.0.3",
+    "eslint-import-resolver-typescript": "^2.7.1",
     "eslint-plugin-import": "^2.23.4",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^3.4.0",

@@ -1,12 +1,32 @@
 {
   "compilerOptions": {
-    "target": "es2018",
-    "module": "commonjs",
-    "strict": true,
+    "baseUrl": "./",
+    "declaration": true,
     "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "importsNotUsedAsValues": "error",
+    "moduleResolution": "node",
+    "module": "commonjs",
+    "newLine": "LF",
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "noUncheckedIndexedAccess": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
     "outDir": "dist",
-    "declaration": true
+    "preserveConstEnums": true,
+    "resolveJsonModule": true,
+    "strict": true,
+    "target": "es2018"
   },
-  "include": ["./scripts", "./test", "./typechain"],
+  "exclude": ["node_modules"],
+  "include": [
+    "./config",
+    "./helpers",
+    "./modules",
+    "./scripts",
+    "./test",
+    "./typechain"
+  ],
   "files": ["./hardhat.config.ts"]
 }

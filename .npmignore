@@ -1,3 +1,7 @@
+config
 hardhat.config.ts
+helpers
+modules
 scripts
 test
+typechain

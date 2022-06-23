@@ -1,0 +1,13 @@
+semi: true
+trailingComma: "all"
+singleQuote: false
+printWidth: 80
+bracketSpacing: true
+explicitTypes: "always"
+tabWidth: 2
+useTabs: false
+overrides:
+  - files: "*.sol"
+    options:
+      bracketSpacing: false
+      tabWidth: 4

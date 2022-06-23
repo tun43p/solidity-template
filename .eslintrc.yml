@@ -1,0 +1,60 @@
+env:
+  browser: true
+  es6: true
+  mocha: true
+  node: true
+
+extends:
+  - "standard"
+  - "plugin:@typescript-eslint/eslint-recommended"
+  - "plugin:@typescript-eslint/recommended"
+  - "plugin:@typescript-eslint/recommended-requiring-type-checking"
+  - "plugin:node/recommended"
+  - "prettier"
+  - "plugin:prettier/recommended"
+
+globals:
+  Atomics: "readonly"
+  SharedArrayBuffer: "readonly"
+
+parser: "@typescript-eslint/parser"
+
+parserOptions:
+  project: "./tsconfig.json"
+
+plugins:
+  - "@typescript-eslint"
+
+rules:
+  import/extensions: "warn"
+  no-await-in-loop: "warn"
+  no-console:
+    - "warn"
+    - allow:
+        - "error"
+        - "info"
+        - "warn"
+  no-nested-ternary: "warn"
+  no-plusplus: "warn"
+  no-underscore-dangle: "warn"
+  "node/no-unsupported-features/es-syntax":
+    - "error"
+    - ignores:
+        - "modules"
+  "@typescript-eslint/array-type":
+    - "error"
+    - default: "array"
+  "@typescript-eslint/explicit-function-return-type":
+    - "error"
+    - allowExpressions: true
+      allowTypedFunctionExpressions: true
+
+settings:
+  import/resolver:
+    typescript: {}
+  node:
+    tryExtensions:
+      - ".d.ts"
+      - ".js"
+      - ".json"
+      - ".ts"
