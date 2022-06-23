@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "baseUrl": "./",
+    "baseUrl": ".",
     "declaration": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,

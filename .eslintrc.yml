@@ -26,7 +26,7 @@ plugins:
   - "@typescript-eslint"
 
 rules:
-  import/extensions: "warn"
+  import/extensions: "error"
   no-await-in-loop: "warn"
   no-console:
     - "warn"
@@ -37,6 +37,17 @@ rules:
   no-nested-ternary: "warn"
   no-plusplus: "warn"
   no-underscore-dangle: "warn"
+  node/no-missing-import:
+    - "error"
+    - allowModules: []
+      resolvePaths:
+        - "."
+      tryExtensions:
+        - ".d.ts"
+        - ".js"
+        - ".json"
+        - ".ts"
+
   "node/no-unsupported-features/es-syntax":
     - "error"
     - ignores:
