@@ -1,15 +1,13 @@
 import { ethers } from "hardhat";
+import { run } from "helpers/common";
 
 async function main(): Promise<void> {
-  const Greeter = await ethers.getContractFactory("Greeter");
-  const greeter = await Greeter.deploy("Hello, Hardhat!");
+  const Contract = await ethers.getContractFactory("Greeter");
+  const contract = await Contract.deploy("Hello, Hardhat!");
 
-  await greeter.deployed();
+  await contract.deployed();
 
-  console.info("Greeter deployed to:", greeter.address);
+  console.info("Greeter deployed to:", contract.address);
 }
 
-main().catch((error) => {
-  console.error(error);
-  process.exitCode = 1;
-});
+run(main());
