@@ -6,6 +6,7 @@ import "@nomiclabs/hardhat-waffle";
 import "@typechain/hardhat";
 import "hardhat-gas-reporter";
 import "solidity-coverage";
+import env from "config/env";
 
 dotenv.config();
 
@@ -16,19 +17,31 @@ task("accounts", "Prints the list of accounts", async (_, hre) => {
 
 const config: HardhatUserConfig = {
   solidity: "0.8.15",
+  defaultNetwork: env.network,
   networks: {
     ropsten: {
-      url: process.env.ROPSTEN_URL || "",
-      accounts:
-        process.env.PRIVATE_KEY !== undefined ? [process.env.PRIVATE_KEY] : [],
+      url: env.url.testnet,
+      accounts: env.account.private,
+    },
+    hardhat: {
+      forking: env.test ? undefined : { url: env.url.mainnet },
+    },
+    mainnet: {
+      url: env.url.mainnet,
+      accounts: env.account.private,
     },
   },
   gasReporter: {
-    enabled: process.env.REPORT_GAS !== undefined,
-    currency: "USD",
+    enabled: env.reportGas,
+    currency: env.currency,
+    token: env.token,
+    coinmarketcap: env.key.coinmarketcap,
   },
   etherscan: {
-    apiKey: process.env.ETHERSCAN_API_KEY,
+    apiKey: env.key.etherscan,
+  },
+  mocha: {
+    timeout: 2000,
   },
 };
 
