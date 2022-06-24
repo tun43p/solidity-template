@@ -15,7 +15,7 @@ const config: HardhatUserConfig = {
   solidity: "0.8.15",
   defaultNetwork: env.network,
   networks: {
-    goreli: {
+    goerli: {
       url: env.url.testnet,
       accounts: env.account.private,
     },
