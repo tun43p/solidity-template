@@ -41,7 +41,7 @@ rules:
     - "error"
     - allowModules: []
       resolvePaths:
-        - "."
+        - "./"
       tryExtensions:
         - ".d.ts"
         - ".js"
