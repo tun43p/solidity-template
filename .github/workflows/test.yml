@@ -14,8 +14,9 @@ jobs:
         node-version: [16.x]
     runs-on: ${{ matrix.platform }}
     steps:
-      - uses: actions/checkout@v1
-      - name: Create and populate .env file
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Create .env file
         env:
           PUBLIC_KEY: ${{ secrets.PUBLIC_KEY }}
           PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
@@ -34,11 +35,15 @@ jobs:
           echo ALCHEMY_API_KEY=${{ secrets.ALCHEMY_API_KEY }} >> .env
           echo COINMARKETCAP_API_KEY=${{ secrets.COINMARKETCAP_API_KEY }} >> .env
           echo ETHERSCAN_API_KEY=${{ secrets.ETHERSCAN_API_KEY }} >> .env
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Setup Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - run: npm install -g yarn
-      - run: yarn install
-      - run: yarn compile
-      - run: yarn test
+      - name: Install yarn globally
+        run: npm install -g yarn
+      - name: Setup application
+        run: |
+          yarn install
+          yarn compile
+      - name: Test application
+        run: yarn test
