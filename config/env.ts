@@ -29,12 +29,12 @@ if (!process.env.PRIVATE_KEY?.includes("0x")) {
 }
 
 if (
-  process.env.NETWORK !== Enums.Network.goreli &&
+  process.env.NETWORK !== Enums.Network.goerli &&
   process.env.NETWORK !== Enums.Network.hardhat &&
   process.env.NETWORK !== Enums.Network.mainnet
 ) {
   throw Error(
-    "Please set your NETWORK env to: \n- goreli\n- hardhat\n -mainnet",
+    "Please set your NETWORK env to: \n- goerli\n- hardhat\n -mainnet",
   );
 }
 

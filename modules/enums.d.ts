@@ -6,7 +6,7 @@ declare namespace Enums {
   }
 
   export const enum Network {
-    goreli = "goreli",
+    goerli = "goerli",
     hardhat = "hardhat",
     mainnet = "mainnet",
   }
