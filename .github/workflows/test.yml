@@ -8,10 +8,7 @@ on:
       - "*"
 jobs:
   env:
-    strategy:
-      matrix:
-        platform: [ubuntu-latest]
-    runs-on: ${{ matrix.platform }}
+    runs-on: ubuntu-latest
     steps:
       - name: Create .env file
         uses: SpicyPizza/create-envfile@v1.3
@@ -42,7 +39,7 @@ jobs:
         node-version: [16.x]
     runs-on: ${{ matrix.platform }}
     steps:
-      - name: Test
+      - name: Get .env file
       - uses: actions/download-artifact@master
         with:
           name: env
