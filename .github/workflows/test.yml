@@ -1,22 +1,24 @@
 name: Unit Tests
+
 on:
-  push:
-    branches:
-      - main
   pull_request:
     branches:
       - "*"
+
 jobs:
   test:
     strategy:
       matrix:
         platform: [ubuntu-latest]
         node-version: [16.x]
+
     runs-on: ${{ matrix.platform }}
+
     steps:
-      - name: Checkout
+      - name: checkout
         uses: actions/checkout@v1
-      - name: Create .env file
+
+      - name: create .env file
         env:
           PUBLIC_KEY: ${{ secrets.PUBLIC_KEY }}
           PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
@@ -36,15 +38,20 @@ jobs:
           echo ALCHEMY_API_KEY=${{ secrets.ALCHEMY_API_KEY }} >> .env
           echo COINMARKETCAP_API_KEY=${{ secrets.COINMARKETCAP_API_KEY }} >> .env
           echo ETHERSCAN_API_KEY=${{ secrets.ETHERSCAN_API_KEY }} >> .env
-      - name: Setup Node.js ${{ matrix.node-version }}
+
+      - name: setup node ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - name: Install yarn globally
+
+      - name: install yarn globally
         run: npm install -g yarn
-      - name: Setup application
-        run: |
-          yarn install
-          yarn compile
-      - name: Test application
+
+      - name: install application
+        run: yarn install
+
+      - name: compile application
+        run: yarn compile
+
+      - name: test application
         run: yarn test

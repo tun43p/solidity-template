@@ -7,7 +7,7 @@ if (
   process.env.NODE_ENV !== Enums.NodeEnv.prod &&
   process.env.NODE_ENV !== Enums.NodeEnv.test
 ) {
-  throw Error("Please set your NODE_ENV env to: \n- dev\n- prod\n -test");
+  throw Error("Please set your NODE_ENV env to: \n- dev\n- prod\n- test");
 }
 
 if (process.env.CURRENCY === undefined || process.env.CURRENCY === "") {
@@ -34,7 +34,7 @@ if (
   process.env.NETWORK !== Enums.Network.mainnet
 ) {
   throw Error(
-    "Please set your NETWORK env to: \n- goerli\n- hardhat\n -mainnet",
+    "Please set your NETWORK env to: \n- goerli\n- hardhat\n- mainnet",
   );
 }
 
