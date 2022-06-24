@@ -13,7 +13,7 @@
     "format": "prettier --write '**/*.{js,ts,json,sol}'",
     "help": "hardhat help",
     "lint": "eslint '**/*.{js,ts}' && solhint 'contracts/**/*.sol'",
-    "start": "NODE_PATH=./ hardhat node",
+    "local": "NODE_PATH=./ hardhat node",
     "test": "NODE_ENV=test NODE_PATH=./ hardhat test"
   },
   "devDependencies": {
