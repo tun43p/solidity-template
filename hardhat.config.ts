@@ -12,7 +12,15 @@ task("accounts", "Prints the list of accounts", async (_, hre) => {
 });
 
 const config: HardhatUserConfig = {
-  solidity: "0.8.15",
+  solidity: {
+    version: "0.8.15",
+    settings: {
+      optimizer: {
+        enabled: true,
+        runs: 1000,
+      },
+    },
+  },
   defaultNetwork: env.network,
   networks: {
     goerli: {
@@ -28,17 +36,14 @@ const config: HardhatUserConfig = {
       accounts: env.account.private,
     },
   },
+  etherscan: {
+    apiKey: env.key.etherscan,
+  },
   gasReporter: {
     enabled: env.reportGas,
     currency: env.currency,
     token: env.token,
     coinmarketcap: env.key.coinmarketcap,
-  },
-  etherscan: {
-    apiKey: env.key.etherscan,
-  },
-  mocha: {
-    timeout: 2000,
   },
 };
 
