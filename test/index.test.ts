@@ -4,14 +4,15 @@ import type { Template } from "typechain";
 
 let contract: Template;
 
-before(async () => {
-  const factory = await ethers.getContractFactory("Template");
-  contract = await factory.deploy("Hello, world!");
-  await contract.deployed();
-});
+describe("Testing contract", () => {
+  before(async () => {
+    const factory = await ethers.getContractFactory("Template");
+    contract = await factory.deploy("Hello, world!");
+    await contract.deployed();
+    console.info("Contract deployed.");
+  });
 
-describe("Greet", function () {
-  it("Should return the new greeting once it's changed", async function () {
+  it("Should return the new greeting once it's changed", async () => {
     expect(await contract.greet()).to.equal("Hello, world!");
     const setGreetingTx = await contract.setGreeting("Hola, mundo!");
     await setGreetingTx.wait();
