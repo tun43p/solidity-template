@@ -8,7 +8,10 @@ on:
       - "*"
 jobs:
   env:
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        platform: [ubuntu-latest]
+    runs-on: ${{ matrix.platform }}
     steps:
       - name: Create .env file
         uses: SpicyPizza/create-envfile@v1.3
@@ -39,21 +42,7 @@ jobs:
         node-version: [16.x]
     runs-on: ${{ matrix.platform }}
     steps:
-      - name: Create env file
-        run: |
-          touch .env
-          NODE_ENV=test >> .env
-          CURRENCY=USD >> .env
-          TOKEN=ETH >> .env
-          PUBLIC_KEY=${{ secrets.PUBLIC_KEY }} >> .env
-          PRIVATE_KEY=${{ secrets.PRIVATE_KEY }} >> .env
-          NETWORK=${{ secrets.NETWORK }} >> .env
-          MAINNET_URL=${{ secrets.MAINNET_URL }} >> .env
-          TESTNET_URL=${{ secrets.TESTNET_URL }} >> .env
-          ALCHEMY_API_KEY=${{ secrets.ALCHEMY_API_KEY }} >> .env
-          COINMARKETCAP_API_KEY=${{ secrets.COINMARKETCAP_API_KEY }} >> .env
-          ETHERSCAN_API_KEY=${{ secrets.ETHERSCAN_API_KEY }} >> .env
-          REPORT_GAS=false >> .env
+      - name: Test
       - uses: actions/download-artifact@master
         with:
           name: env
