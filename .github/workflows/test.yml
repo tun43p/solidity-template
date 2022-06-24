@@ -32,6 +32,7 @@ jobs:
           name: env
           path: .env
   test:
+    needs: [env]
     strategy:
       matrix:
         platform: [ubuntu-latest]
