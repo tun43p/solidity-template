@@ -7,7 +7,7 @@ if (
   process.env.NODE_ENV !== Enums.NodeEnv.prod &&
   process.env.NODE_ENV !== Enums.NodeEnv.test
 ) {
-  throw Error('Please set your NODE_ENV env to \n- dev\n- prod\n -test"');
+  throw Error("Please set your NODE_ENV env to: \n- dev\n- prod\n -test");
 }
 
 if (process.env.CURRENCY === undefined || process.env.CURRENCY === "") {
@@ -34,15 +34,15 @@ if (
   process.env.NETWORK !== Enums.Network.mainnet
 ) {
   throw Error(
-    "Please set your NETWORK env to \n- goreli\n- hardhat\n -mainnet",
+    "Please set your NETWORK env to: \n- goreli\n- hardhat\n -mainnet",
   );
 }
 
-if (!process.env.MAINNET_URL?.includes("alchemy.io")) {
+if (!process.env.MAINNET_URL?.includes("alchemyapi.io")) {
   throw Error("Please specify the Alchemy mainnet url in the .env file.");
 }
 
-if (!process.env.TESTNET_URL?.includes("alchemy.io")) {
+if (!process.env.TESTNET_URL?.includes("alchemyapi.io")) {
   throw Error("Please specify the Alchemy testnet url in the .env file.");
 }
 
