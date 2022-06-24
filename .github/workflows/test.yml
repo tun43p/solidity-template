@@ -27,6 +27,10 @@ jobs:
           envkey_REPOST_GAS: false
           file_name: .env
           fail_on_empty: true
+      - uses: actions/upload-artifact@master
+        with:
+          name: env
+          path: .env
   test:
     strategy:
       matrix:
@@ -49,6 +53,10 @@ jobs:
           COINMARKETCAP_API_KEY=${{ secrets.COINMARKETCAP_API_KEY }} >> .env
           ETHERSCAN_API_KEY=${{ secrets.ETHERSCAN_API_KEY }} >> .env
           REPORT_GAS=false >> .env
+      - uses: actions/download-artifact@master
+        with:
+          name: env
+          path: .env
       - uses: actions/checkout@v1
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
