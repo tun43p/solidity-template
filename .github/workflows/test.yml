@@ -27,8 +27,9 @@ jobs:
           ENV_ETHERSCAN_API_KEY: ${{ secrets.ETHERSCAN_API_KEY }}
       - uses: actions/upload-artifact@master
         with:
-          name: env
-          path: .env
+          name: env-${{ matrix.node-version }}
+          path: ${{github.workspace}}/.env
+          if-no-files-found: error
   test:
     needs: [env]
     strategy:
@@ -39,8 +40,9 @@ jobs:
     steps:
       - uses: actions/upload-artifact@master
         with:
-          name: env
-          path: .env
+          name: env-${{ matrix.node-version }}
+          path: ${{github.workspace}}/.env
+          if-no-files-found: error
       - uses: actions/checkout@v1
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
