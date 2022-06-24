@@ -19,7 +19,13 @@
     "strict": true,
     "target": "es2018"
   },
-  "exclude": ["./artifacts", "./cache", "./contracts", "./node_modules"],
+  "exclude": [
+    "./.github",
+    "./artifacts",
+    "./cache",
+    "./contracts",
+    "./node_modules"
+  ],
   "include": ["./"],
   "files": ["./hardhat.config.ts"]
 }
