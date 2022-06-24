@@ -7,43 +7,33 @@ on:
     branches:
       - "*"
 jobs:
-  env:
-    strategy:
-      matrix:
-        platform: [ubuntu-latest]
-        node-version: [16.x]
-    runs-on: ${{ matrix.platform }}
-    steps:
-      - name: Create .env file
-        uses: ozaytsev86/create-env-file@v1
-        with:
-          ENV_PUBLIC_KEY: ${{ secrets.PUBLIC_KEY }}
-          ENV_PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
-          ENV_NETWORK: ${{ secrets.NETWORK }}
-          ENV_MAINNET_URL: ${{ secrets.MAINNET_URL }}
-          ENV_TESTNET_URL: ${{ secrets.TESTNET_URL }}
-          ENV_ALCHEMY_API_KEY: ${{ secrets.ALCHEMY_API_KEY }}
-          ENV_COINMARKETCAP_API_KEY: ${{ secrets.COINMARKETCAP_API_KEY }}
-          ENV_ETHERSCAN_API_KEY: ${{ secrets.ETHERSCAN_API_KEY }}
-      - uses: actions/upload-artifact@master
-        with:
-          name: env-${{ matrix.node-version }}
-          path: ${{github.workspace}}/.env
-          if-no-files-found: error
   test:
-    needs: [env]
     strategy:
       matrix:
         platform: [ubuntu-latest]
         node-version: [16.x]
     runs-on: ${{ matrix.platform }}
     steps:
-      - uses: actions/upload-artifact@master
-        with:
-          name: env-${{ matrix.node-version }}
-          path: ${{github.workspace}}/.env
-          if-no-files-found: error
       - uses: actions/checkout@v1
+      - name: Create and populate .env file
+        env:
+          PUBLIC_KEY: ${{ secrets.PUBLIC_KEY }}
+          PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+          NETWORK: ${{ secrets.NETWORK }}
+          MAINNET_URL: ${{ secrets.MAINNET_URL }}
+          TESTNET_URL: ${{ secrets.TESTNET_URL }}
+          ALCHEMY_API_KEY: ${{ secrets.ALCHEMY_API_KEY }}
+          COINMARKETCAP_API_KEY: ${{ secrets.COINMARKETCAP_API_KEY }}
+          ETHERSCAN_API_KEY: ${{ secrets.ETHERSCAN_API_KEY }}
+        run: |
+          echo PUBLIC_KEY=${{ secrets.PUBLIC_KEY }} >> .env
+          echo PRIVATE_KEY=${{ secrets.PRIVATE_KEY }} >> .env
+          echo NETWORK=${{ secrets.NETWORK }} >> .env
+          echo MAINNET_URL=${{ secrets.MAINNET_URL }} >> .env
+          echo TESTNET_URL=${{ secrets.TESTNET_URL }} >> .env
+          echo ALCHEMY_API_KEY=${{ secrets.ALCHEMY_API_KEY }} >> .env
+          echo COINMARKETCAP_API_KEY=${{ secrets.COINMARKETCAP_API_KEY }} >> .env
+          echo ETHERSCAN_API_KEY=${{ secrets.ETHERSCAN_API_KEY }} >> .env
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
