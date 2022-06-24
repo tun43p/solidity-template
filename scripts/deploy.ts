@@ -1,13 +1,13 @@
 import { ethers } from "hardhat";
-import { run } from "helpers/common";
+import helpers from "helpers";
 
 async function main(): Promise<void> {
-  const Contract = await ethers.getContractFactory("Greeter");
-  const contract = await Contract.deploy("Hello, Hardhat!");
+  const Contract = await ethers.getContractFactory("Template");
+  const contract = await Contract.deploy("Hello, world!");
 
   await contract.deployed();
 
   console.info("Greeter deployed to:", contract.address);
 }
 
-run(main());
+helpers.run(main());

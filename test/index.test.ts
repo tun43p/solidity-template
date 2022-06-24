@@ -18,11 +18,4 @@ describe("Testing contract", () => {
     await setGreetingTx.wait();
     expect(await contract.greet()).to.equal("Hola, mundo!");
   });
-
-  it("Shoumd return the new number one it's changer", async () => {
-    expect(await contract.getNumber()).to.equal(0);
-    const setNumber = await contract.setNumber(666);
-    await setNumber.wait();
-    expect(await contract.getNumber()).to.equal(666);
-  });
 });
