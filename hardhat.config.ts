@@ -21,7 +21,7 @@ const config: HardhatUserConfig = {
       },
     },
   },
-  defaultNetwork: env.network,
+  defaultNetwork: env.node === Enums.NodeEnv.test ? undefined : env.network,
   networks: {
     goerli: {
       url: env.url.testnet,
