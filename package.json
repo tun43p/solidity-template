@@ -14,7 +14,7 @@
     "help": "hardhat help",
     "lint": "eslint '**/*.{js,ts}' && solhint 'contracts/**/*.sol'",
     "local": "NODE_PATH=./ hardhat node",
-    "test": "NODE_ENV=test NODE_PATH=./ hardhat test"
+    "test": "NODE_ENV=test NODE_PATH=./ hardhat test ./test/index.test.ts"
   },
   "devDependencies": {
     "@nomiclabs/hardhat-ethers": "^2.0.0",
