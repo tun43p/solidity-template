@@ -1,5 +1,7 @@
 # Solidity Template
 
+> Simple turnkey template solution for new Solidity projects.
+
 ## Table of contents
 
 - [Solidity Template](#solidity-template)

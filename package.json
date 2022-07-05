@@ -1,5 +1,6 @@
 {
   "name": "solidity-template",
+  "description": "Simple turnkey template solution for new Solidity projects.",
   "version": "1.0.0-alpha",
   "main": "package.json",
   "license": "MIT",
